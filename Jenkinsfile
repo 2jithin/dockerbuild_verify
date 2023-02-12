@@ -27,11 +27,9 @@ pipeline {
         }
       }
       stage ('whenCondition') {
-        when {
-          branch 'main'
-        }
         steps {
           echo "+++++++++Checking When condition +++++++++======"
+          echo "$BRANCH_NAME"
         }
       }
       stage('B_CleanupAndPrune') {
