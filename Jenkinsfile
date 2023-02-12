@@ -17,7 +17,7 @@ pipeline {
     containername = "apachehttpd"
   }
   stages {
-    parallel {
+    //parallel {
       stage('A_SystemMemory') {
         steps {
           script {
@@ -29,7 +29,7 @@ pipeline {
       }
       stage('B_CleanupAndPrune') {
         when {
-          branch "main"          
+          branch "main"          // When condiiton for main branch oly
         }
         retry(2) { // Retry if failed the step
           steps {
@@ -53,7 +53,7 @@ pipeline {
           }
         }
       }
-    }
+    // }
     stage('Build Docker Image') {
       steps {
         script {
