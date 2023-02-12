@@ -28,8 +28,11 @@ pipeline {
       }
       stage ('whenCondition') {
         steps {
-          echo "+++++++++  Checking When condition   +++++++++"
-          echo "${env.BRANCH_NAME}"
+          script {
+            echo "+++++++++  Checking When condition   +++++++++"
+            sh 'export -p'
+
+          }
         }
       }
       stage('B_CleanupAndPrune') {
