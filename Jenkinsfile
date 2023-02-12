@@ -29,7 +29,7 @@ pipeline {
       }
       stage('B_CleanupAndPrune') {
         when {
-          expression { $BRANCH_NAME == 'main'}
+          branch "main"          
         }
         retry(2) { // Retry if failed the step
           steps {
