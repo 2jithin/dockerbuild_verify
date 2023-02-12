@@ -29,7 +29,7 @@ pipeline {
       stage ('whenCondition') {
         steps {
           echo "+++++++++Checking When condition +++++++++======"
-          echo "$BRANCH_NAME"
+          echo "${env.BRANCH_NAME}"
         }
       }
       stage('B_CleanupAndPrune') {
