@@ -26,14 +26,21 @@ pipeline {
           }
         }
       }
+      stage ('whenCondition') {
+        when {
+          branch 'main'
+        }
+        steps {
+          echo "+++++++++Checking When condition +++++++++======"
+        }
+      }
       stage('B_CleanupAndPrune') {
         when {
           allOf {
             branch 'main'
             // changeset "main" // When condiiton for main branch oly
             // changeset "refs/heads/main"
-          }
-           
+          }  
         }
         //retry(2) { // Retry if failed the step
           steps {
