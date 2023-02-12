@@ -28,9 +28,10 @@ pipeline {
       }
       stage('B_CleanupAndPrune') {
         when {
-          anyOf {
-            changeset "main" // When condiiton for main branch oly
-            changeset "refs/heads/main"
+          allOf {
+            branch 'main'
+            // changeset "main" // When condiiton for main branch oly
+            // changeset "refs/heads/main"
           }
            
         }
