@@ -28,7 +28,11 @@ pipeline {
       }
       stage('B_CleanupAndPrune') {
         when {
-          branch "main"          // When condiiton for main branch oly
+          anyOf {
+            changeset "main" // When condiiton for main branch oly
+            changeset "refs/heads/main"
+          }
+           
         }
         //retry(2) { // Retry if failed the step
           steps {
