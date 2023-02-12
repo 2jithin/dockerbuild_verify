@@ -21,8 +21,8 @@ pipeline {
         steps {
           script {
             echo "========= Memory Usage Percentage ============"
-            sh 'df -h'
-            sh 'lscpu'
+            //sh 'df -h'
+            //sh 'lscpu'
           }
         }
       }
