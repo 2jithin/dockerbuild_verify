@@ -31,7 +31,7 @@ pipeline {
         when {
           branch "main"          // When condiiton for main branch oly
         }
-        retry(2) { // Retry if failed the step
+        //retry(2) { // Retry if failed the step
           steps {
             script {
               // Validate any container is running
@@ -51,7 +51,7 @@ pipeline {
               }
             }
           }
-        }
+        //}
       }
     // }
     stage('Build Docker Image') {
