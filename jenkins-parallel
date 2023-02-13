@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+    options {
+        timeout(time: 20, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        skipDefaultCheckout false
+    }
+    stages {
+        parallel {    
+            stage('displayDate'){
+                steps {
+                    script {
+                        echo "checking parallel script"
+                        sh 'date'
+                    }
+                }
+            }
+            stage('displayDate_Insec'){
+                steps {
+                    script {
+                        echo "checking parallel script"
+                        sh 'date --date="1 sec ago"'
+                    }
+                }
+            }
+        }
+    }
+}
