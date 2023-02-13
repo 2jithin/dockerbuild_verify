@@ -35,7 +35,7 @@ pipeline {
       }
       stage ('whenCondition') {
         when {
-          expression { $BRANCH_NAME ==~ /(main|staging)/ }
+          expression { "${env.BRANCH_NAME}" ==~ /(main|staging)/ }
         }
         steps {
           script {
