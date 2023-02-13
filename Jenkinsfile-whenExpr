@@ -18,6 +18,10 @@ pipeline {
             }
         }
         stage('deploy') {
+            when {
+                changeRequest(target: 'main')
+                
+            }
             steps {
                 script {
                     echo "Deploying Docker"
