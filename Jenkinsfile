@@ -25,9 +25,6 @@ pipeline {
   stages {
     //parallel {
       stage('A_SystemMemory') {
-        when {
-          branch 'main'
-        }
         steps {
           script {
             echo "========= Memory Usage Percentage ============"
@@ -37,6 +34,9 @@ pipeline {
         }
       }
       stage ('whenCondition') {
+        when {
+          branch 'main'
+        }
         steps {
           script {
             echo "+++++++++  Checking When condition   +++++++++"
