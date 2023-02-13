@@ -28,6 +28,7 @@ pipeline {
         steps {
           script {
             echo "========= Memory Usage Percentage ============"
+            sh 'git branch'
             //sh 'df -h'
             //sh 'lscpu'
           }
