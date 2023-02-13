@@ -25,9 +25,9 @@ pipeline {
                         }
                     }
                 }
-            options {
-                maxParallel(2)
-                }
+            // options {
+            //     maxParallel(2)
+            //     }
             }
         }       
     }
