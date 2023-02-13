@@ -25,6 +25,9 @@ pipeline {
   stages {
     //parallel {
       stage('A_SystemMemory') {
+        when {
+          branch 'main'
+        }
         steps {
           script {
             echo "========= Memory Usage Percentage ============"
@@ -37,19 +40,19 @@ pipeline {
         steps {
           script {
             echo "+++++++++  Checking When condition   +++++++++"
-            sh 'export -p'
+//             sh 'export -p'
 
           }
         }
       }
       stage('B_CleanupAndPrune') {
-        when {
-          allOf {
-            branch 'main'
-            // changeset "main" // When condiiton for main branch oly
-            // changeset "refs/heads/main"
-          }  
-        }
+//         when {
+//           allOf {
+//             branch 'main'
+//             // changeset "main" // When condiiton for main branch oly
+//             // changeset "refs/heads/main"
+//           }  
+//         }
         //retry(2) { // Retry if failed the step
           steps {
             script {
