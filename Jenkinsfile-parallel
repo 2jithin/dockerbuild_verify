@@ -21,10 +21,13 @@ pipeline {
                     steps {
                         script {
                             def datevar=$(sh 'date --date="1 sec ago"')
-                            echo "checking parallel script"
+                            echo "checking parallel script second stage ${datevar}"
                             
                         }
                     }
+                }
+            options {
+                maxParallel(2)
                 }
             }
         }       
