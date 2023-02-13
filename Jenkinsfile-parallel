@@ -6,9 +6,9 @@ pipeline {
         skipDefaultCheckout false
     }
     stages {
-        stage('display Time and Date')
+        stage('display Time and Date') {
             parallel {    
-                stage('displayDate'){
+                stage('displayDate') {
                     steps {
                         script {
                             echo "checking parallel script"
@@ -16,7 +16,7 @@ pipeline {
                         }
                     }
                 }
-                stage('displayDate_Insec'){
+                stage('displayDate_Insec') {
                     steps {
                         script {
                             echo "checking parallel script"
@@ -24,8 +24,7 @@ pipeline {
                         }
                     }
                 }
-        }
-        
-
+            }
+        }       
     }
 }
