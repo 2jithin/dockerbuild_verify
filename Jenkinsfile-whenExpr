@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     echo " = = = == = = = = = = Creating Docker Image = = = = = == = = = = ="
-
+                    echo "username $USER"
                     sh 'docker build -t apache/$BUILD_NUMBER .'
                     echo "++ Completed ++"
                 }
