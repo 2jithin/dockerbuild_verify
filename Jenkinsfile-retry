@@ -7,12 +7,14 @@ pipeline {
     }
     stages {
         stage('displayDate') {
+            retry(2) {
             steps {
                 script {
                     //def datevar=$(sh 'date')
                     def datevar = sh(script: 'date', returnStdout: true).trim()
                     echo "checking parallel script first stage ${datevar}"      
                 }
+            }
             }
             
         }
