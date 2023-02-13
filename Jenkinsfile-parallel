@@ -6,23 +6,26 @@ pipeline {
         skipDefaultCheckout false
     }
     stages {
-        parallel {    
-            stage('displayDate'){
-                steps {
-                    script {
-                        echo "checking parallel script"
-                        sh 'date'
+        stage('display Time and Date')
+            parallel {    
+                stage('displayDate'){
+                    steps {
+                        script {
+                            echo "checking parallel script"
+                            sh 'date'
+                        }
                     }
                 }
-            }
-            stage('displayDate_Insec'){
-                steps {
-                    script {
-                        echo "checking parallel script"
-                        sh 'date --date="1 sec ago"'
+                stage('displayDate_Insec'){
+                    steps {
+                        script {
+                            echo "checking parallel script"
+                            sh 'date --date="1 sec ago"'
+                        }
                     }
                 }
-            }
         }
+        
+
     }
 }
