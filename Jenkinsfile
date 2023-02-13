@@ -6,7 +6,7 @@ pipeline {
     git 'customgit' //toolname
       installations: [
         'Default': '/usr/bin/git', // Path to Git executable
-        'Other': '/usr/local/bin/git'
+        //'Other': '/usr/local/bin/git'
       ]
   }
   options {
