@@ -2,13 +2,13 @@ def dockerbuildversion = null
 response = null
 pipeline {
   agent any
-  tools {
-    git 'customgit' //toolname
-      installations: [
-        'Default': '/usr/bin/git', // Path to Git executable
-        //'Other': '/usr/local/bin/git'
-      ]
-  }
+//   tools {
+//     git 'customgit' //toolname
+//       installations: [
+//         'Default': '/usr/bin/git', // Path to Git executable
+//         //'Other': '/usr/local/bin/git'
+//       ]
+//   }
   options {
     timeout(time: 20, unit: 'MINUTES')
     buildDiscarder(logRotator(numToKeepStr: '10'))
