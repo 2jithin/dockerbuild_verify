@@ -35,7 +35,7 @@ pipeline {
       }
       stage ('whenCondition') {
         when {
-          branch 'main'
+          expression { BRANCH_NAME ==~ /(main|staging)/ }
         }
         steps {
           script {
