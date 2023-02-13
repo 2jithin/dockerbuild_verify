@@ -15,7 +15,7 @@ pipeline {
                     echo "checking parallel script first stage ${datevar}" 
                     retry(2) {
                         sh 'echo "Hello User1"'
-                    }   
+                    } // can use in catch (Exception e) block for retry the error   
                 }
                 }
             }
