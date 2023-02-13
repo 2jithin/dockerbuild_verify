@@ -8,11 +8,14 @@ pipeline {
     stages {
         stage('displayDate') {
             steps {
-                retry(3) {
+                retry(2) {
                 script {
                     //def datevar=$(sh 'date')
                     def datevar = sh(script: 'dat', returnStdout: true).trim()
-                    echo "checking parallel script first stage ${datevar}"      
+                    echo "checking parallel script first stage ${datevar}" 
+                    retry(2) {
+                        sh 'echo "Hello User1"'
+                    }   
                 }
                 }
             }
