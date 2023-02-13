@@ -3,7 +3,7 @@ response = null
 pipeline {
   agent any
 //   tools {
-//     git 'customgit' //toolname
+//     git 'Default' //toolname and version that given as name in global tools
 //       installations: [
 //         'Default': '/usr/bin/git', // Path to Git executable
 //         //'Other': '/usr/local/bin/git'
