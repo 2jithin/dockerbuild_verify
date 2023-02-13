@@ -14,13 +14,14 @@ pipeline {
                     sh '$USER'
                     sh 'docker build -t apache/$BUILD_NUMBER .'
                     echo "++ Completed ++"
-                    sh 'git checkout main'
+                    sh 'git branch'
                 }
             }
         }
         stage('deploy') {
             when {
-                changeRequest(target: 'main')  
+                // changeRequest(target: 'main') 
+                branch 'main' 
             }
             steps {
                 script {
