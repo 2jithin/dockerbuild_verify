@@ -35,13 +35,13 @@ pipeline {
       }
       stage ('whenCondition') {
         steps {
+          when {
+            branch 'main'            
+          }
           script {
             echo "+++++++++  Checking When condition   +++++++++"
 //             sh 'export -p'
           }
-        }
-        when {
-          branch 'main'
         }
       }
       stage('B_CleanupAndPrune') {
