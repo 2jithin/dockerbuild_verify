@@ -11,16 +11,18 @@ pipeline {
                 stage('displayDate') {
                     steps {
                         script {
-                            echo "checking parallel script"
-                            sh 'date'
+                            def datevar=$(sh 'date')
+                            echo "checking parallel script first stage ${datevar}"
+                            
                         }
                     }
                 }
                 stage('displayDate_Insec') {
                     steps {
                         script {
+                            def datevar=$(sh 'date --date="1 sec ago"')
                             echo "checking parallel script"
-                            sh 'date --date="1 sec ago"'
+                            
                         }
                     }
                 }
