@@ -34,10 +34,10 @@ pipeline {
         }
       }
       stage ('whenCondition') {
+        when {
+          branch 'main'
+        }
         steps {
-          when {
-            branch 'main'            
-          }
           script {
             echo "+++++++++  Checking When condition   +++++++++"
 //             sh 'export -p'
