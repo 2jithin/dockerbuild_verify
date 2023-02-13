@@ -11,7 +11,7 @@ pipeline {
                 retry(3) {
                 script {
                     //def datevar=$(sh 'date')
-                    def datevar = sh(script: 'date', returnStdout: true).trim()
+                    def datevar = sh(script: 'dat', returnStdout: true).trim()
                     echo "checking parallel script first stage ${datevar}"      
                 }
                 }
