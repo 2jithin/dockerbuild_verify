@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+    options {
+        timeout(time: 20, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        skipDefaultCheckout false
+    }
+    stages {
+        retry(2) {
+        stage('display Time and Date') {
+            parallel {    
+                stage('displayDate') {
+                    steps {
+                        script {
+                            //def datevar=$(sh 'date')
+                            def datevar = sh(script: 'date', returnStdout: true).trim()
+                            echo "checking parallel script first stage ${datevar}"      
+                        }
+                    }
+                }
+                stage('displayDate_Insec') {
+                    steps {
+                        script {
+                            def datevar = sh(script: 'date --date="1 sec ago"', returnStdout: true).trim()
+                            echo "checking parallel script second stage ${datevar}"  
+                        }
+                    }
+                }
+            }
+            // options {
+            //     maxParallel(2)
+            // }
+        }       
+    }
+    }
+}
