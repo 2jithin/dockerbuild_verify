@@ -11,7 +11,7 @@ pipeline {
                 script {
                     echo " = = = == = = = = = = Creating Docker Image = = = = = == = = = = ="
                     echo "username $USER"
-                    sh 'sudo docker build -t apache/$BUILD_NUMBER .'
+                    sh 'docker build -t apache/$BUILD_NUMBER .'
                     echo "++ Completed ++"
                 }
             }
@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     echo "Deploying Docker"
-                    sh 'sudo docker run -d --name apachectest -p 80:80 apache/$BUILD_NUMBER'
+                    sh 'docker run -d --name apachectest -p 80:80 apache/$BUILD_NUMBER'
                 }
             }
         }
