@@ -6,11 +6,9 @@ pipeline {
         skipDefaultCheckout false
     }
     stages {
-        
         stage('display Time and Date') {
-            parallel {    
+  
                 stage('displayDate') {
-                    retry(2) {
                     steps {
                         script {
                             //def datevar=$(sh 'date')
@@ -18,7 +16,7 @@ pipeline {
                             echo "checking parallel script first stage ${datevar}"      
                         }
                     }
-                    }
+                    
                 }
                 stage('displayDate_Insec') {
                     steps {
@@ -28,10 +26,6 @@ pipeline {
                         }
                     }
                 }
-            }
-            // options {
-            //     maxParallel(2)
-            // }
         }       
     
     }
