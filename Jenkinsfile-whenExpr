@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    options {
+        timeout(time: 20, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        skipDefaultCheckout false
+    }
+    stages {
+        stage('build_image') {
+            steps {
+                script {
+                    echo " = = = == = = = = = = Creating Docker Image = = = = = == = = = = ="
+
+                    sh 'docker build -t apache/$BUILD_NUMBER .'
+                    echo "++ Completed ++"
+                }
+            }
+        }
+        stage('deploy') {
+            steps {
+                script {
+                    echo "Deploying Docker"
+                    sh 'docker run -d --name apachectest -p 80:80 apache/$BUILD_NUMBER'
+                }
+            }
+        }
+   
+    }
+}
