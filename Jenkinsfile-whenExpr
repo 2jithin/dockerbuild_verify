@@ -31,9 +31,9 @@ pipeline {
                     timeout(time: 30, unit: 'SECONDS') {
                         userInput = input(
                         id: 'Proceed1', message: 'Was this successful?', parameters: [
-                        [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you agree with this']
+                        [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please-confirm']
                         ])
-                        if (userInput.Release == false) {
+                        if (userInput.BooleanParameterDefinition == false) {
                             error('Deployment not approved!')
                             userInput = false
                             echo "Aborted by: [${user}]"
