@@ -31,7 +31,7 @@ pipeline {
                     timeout(time: 30, unit: 'SECONDS') {
                         userInput = input(
                         id: 'Proceed1', message: 'Was this successful?', parameters: [
-                        [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please-confirm']
+                        [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please-confirmPlease confirm you agree with this']
                         ])
                         if (userInput == true) {
                             echo "Deploying Docker"
@@ -40,8 +40,7 @@ pipeline {
                             error('Deployment not approved!')
                             userInput = false
                             echo "Aborted by: [${user}]" 
-                        }
-                        
+                        }  
                     }
                     // def approval = input message: 'Deploy to production?', parameters: [[$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Approve deployment to production?']]
                     // if (!approval) {
