@@ -22,14 +22,11 @@ pipeline {
             }
         }
         stage('deploy') {
-            when {
-                expression
+            when { anyOf { branch 'main'; branch 'master' } }
                 //changeRequest(target: 'main') 
                 //branch 'main' 
-            }
             steps {
                 script {
-
                     timeout(time: 30, unit: 'SECONDS') {
                         def userInput = input(
                             message: 'Do you approve the deployment?',
