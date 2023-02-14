@@ -1,4 +1,5 @@
 def branchname = null
+def userInput = true
 pipeline {
     agent any
     options {
@@ -27,20 +28,19 @@ pipeline {
                 //branch 'main' 
             steps {
                 script {
-                    timeout(time: 300, unit: 'SECONDS') {
-                        def userInput = input(
-                            message: 'Do you approve the deployment?',
-                            parameters: [[$class: 'BooleanParameterDefinition',
-                                            defaultValue: false,
-                                            description: 'Ticking this box will do a release',
-                                            name: 'Release']]
-                        )
-                        if (!userInput.Release) {
-                            error('Deployment not approved!')
-                        } else {
-                            echo "Deploying Docker"
-                            //sh 'docker run -d --name apachectest -p 80:80 apache/$BUILD_NUMBER'   
-                        }
+                    timeout(time: 30, unit: 'SECONDS') {
+                        userInput = input(
+                        id: 'Proceed1', message: 'Was this successful?', parameters: [
+                        [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you agree with this']
+                        ])
+                        // if (!userInput.Release) {
+                        //     error('Deployment not approved!')
+                        //     userInput = false
+                        //     echo "Aborted by: [${user}]"
+                        // } else {
+                        //     echo "Deploying Docker"
+                        //     //sh 'docker run -d --name apachectest -p 80:80 apache/$BUILD_NUMBER'   
+                        // }
                         
                     }
                     // def approval = input message: 'Deploy to production?', parameters: [[$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Approve deployment to production?']]
