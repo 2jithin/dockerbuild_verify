@@ -22,7 +22,7 @@ pipeline {
         stage('deploy') {
             when {
                 // changeRequest(target: 'main') 
-                branch 'c488027' 
+                branch 'main' 
             }
             steps {
                 script {
