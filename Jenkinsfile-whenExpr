@@ -27,14 +27,14 @@ pipeline {
                 //branch 'main' 
             steps {
                 script {
-                    timeout(time: 30, unit: 'SECONDS') {
+                    timeout(time: 300, unit: 'SECONDS') {
                         def userInput = input(
                             message: 'Do you approve the deployment?',
                             parameters: [
                                 booleanParam(defaultValue: true, description: 'Approve?', name: 'APPROVE')
                             ]
                         )
-                        if (!userInput.APPROVE) {
+                        if (!APPROVE) {
                             error('Deployment not approved!')
                         } else {
                             echo "Deploying Docker"
