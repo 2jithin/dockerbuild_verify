@@ -21,8 +21,8 @@ pipeline {
         }
         stage('deploy') {
             when {
-                // changeRequest(target: 'main') 
-                branch 'main' 
+                changeRequest(target: 'main') 
+                //branch 'main' 
             }
             steps {
                 script {
