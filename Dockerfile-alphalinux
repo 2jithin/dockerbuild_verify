@@ -1,0 +1,17 @@
+FROM alpine:latest
+
+LABEL maintainer="jithinc"
+LABEL org.opencontainers.image.authors="jithin"
+LABEL org.opencontainers.image.created="2023-02-13T00:00:00Z"
+LABEL org.opencontainers.image.revision="1"
+LABEL org.opencontainers.image.title="My Alpine Linux Image"
+LABEL org.opencontainers.image.description="Docker image for Alpine Linux"
+
+# Install Apache httpd
+RUN apk update && apk add apache2
+
+# Expose port 80 for web traffic
+EXPOSE 100
+
+# Start Apache httpd
+CMD ["httpd", "-D", "FOREGROUND"]
