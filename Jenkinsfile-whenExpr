@@ -15,6 +15,7 @@ pipeline {
                     sh '    '
                     echo "++ Completed ++"
                     git url: 'https://github.com/2jithin/dockerbuild_verify.git', branch: 'main'
+                    sh 'git branch'
                 }
             }
         }
