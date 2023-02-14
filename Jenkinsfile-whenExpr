@@ -33,7 +33,7 @@ pipeline {
                         id: 'Proceed1', message: 'Was this successful?', parameters: [
                         [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please-confirm']
                         ])
-                        if (userInput.BooleanParameterDefinition == false) {
+                        if (userInput == true) {
                             error('Deployment not approved!')
                             userInput = false
                             echo "Aborted by: [${user}]"
