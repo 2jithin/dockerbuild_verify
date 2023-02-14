@@ -33,14 +33,14 @@ pipeline {
                         id: 'Proceed1', message: 'Was this successful?', parameters: [
                         [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you agree with this']
                         ])
-                        // if (!userInput.Release) {
-                        //     error('Deployment not approved!')
-                        //     userInput = false
-                        //     echo "Aborted by: [${user}]"
-                        // } else {
-                        //     echo "Deploying Docker"
-                        //     //sh 'docker run -d --name apachectest -p 80:80 apache/$BUILD_NUMBER'   
-                        // }
+                        if (userInput.Release == false) {
+                            error('Deployment not approved!')
+                            userInput = false
+                            echo "Aborted by: [${user}]"
+                        } else {
+                            echo "Deploying Docker"
+                            //sh 'docker run -d --name apachectest -p 80:80 apache/$BUILD_NUMBER'   
+                        }
                         
                     }
                     // def approval = input message: 'Deploy to production?', parameters: [[$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Approve deployment to production?']]
