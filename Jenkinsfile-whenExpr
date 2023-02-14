@@ -30,11 +30,12 @@ pipeline {
                     timeout(time: 300, unit: 'SECONDS') {
                         def userInput = input(
                             message: 'Do you approve the deployment?',
-                            parameters: [
-                                booleanParam(defaultValue: true, description: 'Approve?', name: 'APPROVE')
-                            ]
+                            parameters: [[$class: 'BooleanParameterDefinition',
+                                            defaultValue: false,
+                                            description: 'Ticking this box will do a release',
+                                            name: 'Release']]
                         )
-                        if (!APPROVE) {
+                        if (!userInput.Release) {
                             error('Deployment not approved!')
                         } else {
                             echo "Deploying Docker"
