@@ -36,7 +36,7 @@ pipeline {
                         )
                         if (!userInput.APPROVE) {
                             error('Deployment not approved!')
-                        } else if (userInput.APPROVE) {
+                        } else if (userInput.APPROVE == true) {
                             echo "Deploying Docker"
                             //sh 'docker run -d --name apachectest -p 80:80 apache/$BUILD_NUMBER'   
                         } else {
