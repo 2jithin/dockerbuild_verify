@@ -1,3 +1,4 @@
+def branchname = null
 pipeline {
     agent any
     options {
@@ -15,7 +16,7 @@ pipeline {
                     echo "++ Completed ++"
                     git url: 'https://github.com/2jithin/dockerbuild_verify.git', branch: 'main'
                     sh 'docker build -t apachehttpd/$BUILD_NUMBER -f Dockerfile-alphalinux .'
-                    sh 'git branch'
+                    branchname = sh 'git branch'
                 }
             }
         }
