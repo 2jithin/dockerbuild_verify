@@ -34,12 +34,12 @@ pipeline {
                         [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please-confirm']
                         ])
                         if (userInput == true) {
+                            echo "Deploying Docker"
+                            //sh 'docker run -d --name apachectest -p 80:80 apache/$BUILD_NUMBER' 
+                        } else {
                             error('Deployment not approved!')
                             userInput = false
-                            echo "Aborted by: [${user}]"
-                        } else {
-                            echo "Deploying Docker"
-                            //sh 'docker run -d --name apachectest -p 80:80 apache/$BUILD_NUMBER'   
+                            echo "Aborted by: [${user}]" 
                         }
                         
                     }
