@@ -16,7 +16,7 @@ pipeline {
                     sh '${USER}'
                     echo "++ Completed ++"
                     git url: 'https://github.com/2jithin/dockerbuild_verify.git', branch: 'main'
-                    sh 'docker build -t apachehttpd/$BUILD_NUMBER -f Dockerfile-alphalinux .'
+                    //sh 'docker build -t apachehttpd/$BUILD_NUMBER -f Dockerfile-alphalinux .'
                     branchname = sh 'git branch'
                 }
             }
@@ -38,7 +38,7 @@ pipeline {
                             error('Deployment not approved!')
                         } else if (userInput.APPROVE) {
                             echo "Deploying Docker"
-                            sh 'docker run -d --name apachectest -p 80:80 apache/$BUILD_NUMBER'   
+                            //sh 'docker run -d --name apachectest -p 80:80 apache/$BUILD_NUMBER'   
                         } else {
                             echo "Time OUT APPROVAL"
                         }
