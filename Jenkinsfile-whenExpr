@@ -10,11 +10,12 @@ pipeline {
             steps {
                 script {
                     echo " = = = == = = = = = = Creating Docker Image = = = = = == = = = = ="
-                    echo 'username'
-                    sh '$USER'
+                    echo 'The Current username'
+                    echo "$USER"
                     sh '    '
                     echo "++ Completed ++"
                     git url: 'https://github.com/2jithin/dockerbuild_verify.git', branch: 'main'
+                    sh 'docker build -t apachehttpd/$BUILD_NUMBER -f Dockerfile-alphalinux .'
                     sh 'git branch'
                 }
             }
