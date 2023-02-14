@@ -5,6 +5,7 @@ pipeline {
         timeout(time: 20, unit: 'MINUTES')
         buildDiscarder(logRotator(numToKeepStr: '10'))
         skipDefaultCheckout false
+        skipStagesAfterUnstable()
     }
     stages {
         stage('build_image') {
@@ -22,13 +23,37 @@ pipeline {
         }
         stage('deploy') {
             when {
-                changeRequest(target: 'main') 
+                expression
+                //changeRequest(target: 'main') 
                 //branch 'main' 
             }
             steps {
                 script {
-                    echo "Deploying Docker"
-                    sh 'docker run -d --name apachectest -p 80:80 apache/$BUILD_NUMBER'
+
+                    timeout(time: 30, unit: 'SECONDS') {
+                        def userInput = input(
+                            message: 'Do you approve the deployment?',
+                            parameters: [
+                                booleanParam(defaultValue: true, description: 'Approve?', name: 'APPROVE')
+                            ]
+                        )
+                        if (!userInput.APPROVE) {
+                            error('Deployment not approved!')
+                        } else if (userInput.APPROVE) {
+                            echo "Deploying Docker"
+                            sh 'docker run -d --name apachectest -p 80:80 apache/$BUILD_NUMBER'   
+                        } else {
+                            echo "Time OUT APPROVAL"
+                        }
+                        
+                    }
+                    // def approval = input message: 'Deploy to production?', parameters: [[$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Approve deployment to production?']]
+                    // if (!approval) {
+                    //     error('Deployment to production was not approved')
+                    // } else if (approval) {
+                    //     echo "Deploying Docker"
+                    //     sh 'docker run -d --name apachectest -p 80:80 apache/$BUILD_NUMBER'                        
+                    // }
                 }
             }
         }
