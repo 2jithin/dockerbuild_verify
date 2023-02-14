@@ -12,7 +12,7 @@ pipeline {
                     echo " = = = == = = = = = = Creating Docker Image = = = = = == = = = = ="
                     echo 'username'
                     sh '$USER'
-                    sh 'docker build -t apache/$BUILD_NUMBER -f Dockerfile-alphalinux .'
+                    sh 'docker build -t apachehttpd/$BUILD_NUMBER -f Dockerfile-alphalinux .'
                     echo "++ Completed ++"
                     sh 'git branch'
                 }
